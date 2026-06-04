@@ -1,0 +1,14 @@
+# Target labels
+ spdlog-populate
+# Source files and their labels
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/CMakeFiles/spdlog-populate
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/CMakeFiles/spdlog-populate.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/CMakeFiles/spdlog-populate-complete.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-build.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-configure.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-download.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-install.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-mkdir.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-patch.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-test.rule
+/Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-update.rule
