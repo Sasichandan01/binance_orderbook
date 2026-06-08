@@ -798,28 +798,6 @@ CMakeFiles/orderbook.dir/src/websocket_client.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/wstring_convert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdarg \
   /Users/cloudwick/Desktop/iiqf/orderbook_core/include/types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/thread \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/basic_ostream.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/put_character_sequence.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/bitset \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/format \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/queue \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/deque.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/queue.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/deque \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stack \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/print \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/chrono \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/file_clock.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
   /Users/cloudwick/Desktop/iiqf/orderbook_core/include/httplib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/arpa/inet.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/netinet/in.h \
@@ -848,6 +826,7 @@ CMakeFiles/orderbook.dir/src/websocket_client.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/poll.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/mman.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/un.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/unistd.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_posix_vdisable.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/select.h \
@@ -857,6 +836,9 @@ CMakeFiles/orderbook.dir/src/websocket_client.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/chrono \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/file_clock.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/condition_variable \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__stop_token/stop_callback.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__stop_token/intrusive_shared_ptr.h \
@@ -873,6 +855,20 @@ CMakeFiles/orderbook.dir/src/websocket_client.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/put_character_sequence.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/bitset \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/deque \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/deque.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/format \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/queue \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/queue.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stack \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/basic_ostream.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
@@ -949,7 +945,11 @@ CMakeFiles/orderbook.dir/src/websocket_client.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/regex \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/set \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/stat.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/thread \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_set \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CFNetwork.framework/Headers/CFHost.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CFNetwork.framework/Headers/CFNetworkDefs.h \
@@ -1296,6 +1296,22 @@ CMakeFiles/orderbook.dir/src/websocket_client.cpp.o: \
   /opt/homebrew/include/openssl/quic.h \
   /opt/homebrew/include/openssl/x509v3.h \
   /opt/homebrew/include/openssl/x509v3err.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/spdlog.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/common.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/null_mutex.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/tweakme.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/fmt/fmt.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/fmt/bundled/core.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/fmt/bundled/format.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/registry.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/periodic_worker.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/synchronous_factory.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/logger.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/backtracer.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/circular_q.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/log_msg_buffer.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/log_msg.h \
+  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/version.h \
   /opt/homebrew/include/nlohmann/json.hpp \
   /opt/homebrew/include/nlohmann/adl_serializer.hpp \
   /opt/homebrew/include/nlohmann/detail/abi_macros.hpp \
@@ -1343,20 +1359,4 @@ CMakeFiles/orderbook.dir/src/websocket_client.cpp.o: \
   /opt/homebrew/include/nlohmann/ordered_map.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/any \
   /opt/homebrew/include/nlohmann/detail/macro_unscope.hpp \
-  /opt/homebrew/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/spdlog.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/common.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/null_mutex.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/tweakme.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/fmt/fmt.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/fmt/bundled/core.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/fmt/bundled/format.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/registry.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/periodic_worker.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/synchronous_factory.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/logger.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/backtracer.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/circular_q.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/log_msg_buffer.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/details/log_msg.h \
-  /Users/cloudwick/Desktop/iiqf/orderbook_core/build/_deps/spdlog-src/include/spdlog/version.h
+  /opt/homebrew/include/nlohmann/thirdparty/hedley/hedley_undef.hpp

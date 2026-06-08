@@ -33,7 +33,7 @@ bool SyncEngine::initializeFromSnapshot() {
 
   synced_ = false;
 
-  deltaBuffer_.clear();
+  initialized_ = true;
 
   spdlog::info(
       "Snapshot initialized "
@@ -92,8 +92,6 @@ void SyncEngine::processBufferedEvents() {
 }
 
 int64_t SyncEngine::calculateExchangeLatencyMs(const DepthDelta& delta) const {
-  // delta.eventTime =
-  //     j.value("E", 0ULL);
   if (delta.eventTime == 0) {
     return -1;
   }
@@ -106,6 +104,11 @@ int64_t SyncEngine::calculateExchangeLatencyMs(const DepthDelta& delta) const {
 }
 
 void SyncEngine::processDelta(const DepthDelta& delta) {
+  if (!initialized_) {
+    deltaBuffer_.push_back(delta);
+    return;
+  }
+
   auto eventStart = std::chrono::steady_clock::now();
 
   auto exchangeToAppMs =
@@ -117,13 +120,16 @@ void SyncEngine::processDelta(const DepthDelta& delta) {
   if (!synced_) {
     deltaBuffer_.push_back(delta);
 
-    const uint64_t lastUpdateId = expectedNextId_ - 1;
+    if (expectedNextId_ > 0) {
+      const uint64_t lastUpdateId = expectedNextId_ - 1;
 
-    deltaBuffer_.erase(std::remove_if(deltaBuffer_.begin(), deltaBuffer_.end(),
-                                      [&](const DepthDelta& d) {
-                                        return d.finalUpdateId < lastUpdateId;
-                                      }),
-                       deltaBuffer_.end());
+      deltaBuffer_.erase(
+          std::remove_if(deltaBuffer_.begin(), deltaBuffer_.end(),
+                         [&](const DepthDelta& d) {
+                           return d.finalUpdateId < lastUpdateId;
+                         }),
+          deltaBuffer_.end());
+    }
 
     for (const auto& d : deltaBuffer_) {
       if (d.firstUpdateId <= expectedNextId_ &&
@@ -137,16 +143,16 @@ void SyncEngine::processDelta(const DepthDelta& delta) {
         auto syncUs = std::chrono::duration_cast<std::chrono::microseconds>(
                           syncEnd - syncStart)
                           .count();
+
         spdlog::info(
             "[SYNC_COMPLETE] "
             "expectedNextId={} "
             "buffered_events={} "
             "sync_processing={}us",
-
             expectedNextId_, deltaBuffer_.size(), syncUs);
-      }
 
-      return;
+        return;
+      }
     }
 
     if (deltaBuffer_.size() > 2000) {
@@ -166,7 +172,6 @@ void SyncEngine::processDelta(const DepthDelta& delta) {
           "Gap detected. "
           "Expected={} "
           "Received={}",
-
           lastAppliedU_ + 1, delta.firstUpdateId);
 
       initializeFromSnapshot();
@@ -199,7 +204,6 @@ void SyncEngine::processDelta(const DepthDelta& delta) {
       "exchange_to_app={}ms "
       "book_update={}us "
       "total_processing={}us",
-
       delta.finalUpdateId, exchangeToAppMs, applyLatencyUs, totalUs);
 
   lastAppliedU_ = delta.finalUpdateId;

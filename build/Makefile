@@ -142,6 +142,30 @@ spdlog/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/spdlog-build/CMakeFiles/spdlog.dir/build.make _deps/spdlog-build/CMakeFiles/spdlog.dir/build
 .PHONY : spdlog/fast
 
+src/api_server.o: src/api_server.cpp.o
+.PHONY : src/api_server.o
+
+# target to build an object file
+src/api_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/api_server.cpp.o
+.PHONY : src/api_server.cpp.o
+
+src/api_server.i: src/api_server.cpp.i
+.PHONY : src/api_server.i
+
+# target to preprocess a source file
+src/api_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/api_server.cpp.i
+.PHONY : src/api_server.cpp.i
+
+src/api_server.s: src/api_server.cpp.s
+.PHONY : src/api_server.s
+
+# target to generate assembly for a file
+src/api_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/api_server.cpp.s
+.PHONY : src/api_server.cpp.s
+
 src/async_logger.o: src/async_logger.cpp.o
 .PHONY : src/async_logger.o
 
@@ -165,6 +189,30 @@ src/async_logger.s: src/async_logger.cpp.s
 src/async_logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/async_logger.cpp.s
 .PHONY : src/async_logger.cpp.s
+
+src/execution_engine.o: src/execution_engine.cpp.o
+.PHONY : src/execution_engine.o
+
+# target to build an object file
+src/execution_engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/execution_engine.cpp.o
+.PHONY : src/execution_engine.cpp.o
+
+src/execution_engine.i: src/execution_engine.cpp.i
+.PHONY : src/execution_engine.i
+
+# target to preprocess a source file
+src/execution_engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/execution_engine.cpp.i
+.PHONY : src/execution_engine.cpp.i
+
+src/execution_engine.s: src/execution_engine.cpp.s
+.PHONY : src/execution_engine.s
+
+# target to generate assembly for a file
+src/execution_engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/execution_engine.cpp.s
+.PHONY : src/execution_engine.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -237,6 +285,30 @@ src/order_book.s: src/order_book.cpp.s
 src/order_book.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/order_book.cpp.s
 .PHONY : src/order_book.cpp.s
+
+src/order_manager.o: src/order_manager.cpp.o
+.PHONY : src/order_manager.o
+
+# target to build an object file
+src/order_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/order_manager.cpp.o
+.PHONY : src/order_manager.cpp.o
+
+src/order_manager.i: src/order_manager.cpp.i
+.PHONY : src/order_manager.i
+
+# target to preprocess a source file
+src/order_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/order_manager.cpp.i
+.PHONY : src/order_manager.cpp.i
+
+src/order_manager.s: src/order_manager.cpp.s
+.PHONY : src/order_manager.s
+
+# target to generate assembly for a file
+src/order_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/src/order_manager.cpp.s
+.PHONY : src/order_manager.cpp.s
 
 src/snapshot_manager.o: src/snapshot_manager.cpp.o
 .PHONY : src/snapshot_manager.o
@@ -320,9 +392,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... orderbook"
 	@echo "... spdlog"
+	@echo "... src/api_server.o"
+	@echo "... src/api_server.i"
+	@echo "... src/api_server.s"
 	@echo "... src/async_logger.o"
 	@echo "... src/async_logger.i"
 	@echo "... src/async_logger.s"
+	@echo "... src/execution_engine.o"
+	@echo "... src/execution_engine.i"
+	@echo "... src/execution_engine.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -332,6 +410,9 @@ help:
 	@echo "... src/order_book.o"
 	@echo "... src/order_book.i"
 	@echo "... src/order_book.s"
+	@echo "... src/order_manager.o"
+	@echo "... src/order_manager.i"
+	@echo "... src/order_manager.s"
 	@echo "... src/snapshot_manager.o"
 	@echo "... src/snapshot_manager.i"
 	@echo "... src/snapshot_manager.s"

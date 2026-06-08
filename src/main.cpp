@@ -1,13 +1,18 @@
 #include <httplib.h>
 #include <spdlog/spdlog.h>
+
 #include <atomic>
 #include <chrono>
 #include <csignal>
 #include <memory>
 #include <nlohmann/json.hpp>
 #include <thread>
+
+#include "api_server.h"
 #include "async_logger.h"
+#include "execution_engine.h"
 #include "order_book.h"
+#include "order_manager.h"
 #include "snapshot_manager.h"
 #include "sync_engine.h"
 #include "types.h"
@@ -58,7 +63,9 @@ bool fetchSnapshot(const std::string& symbol, BookSnapshot& snapshot,
       "/api/v3/depth?symbol=" + symbol + "&limit=" + std::to_string(limit);
 
   auto fetchStart = std::chrono::steady_clock::now();
+
   auto response = cli.Get(path);
+
   auto fetchEnd = std::chrono::steady_clock::now();
 
   auto fetchMs = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -69,11 +76,10 @@ bool fetchSnapshot(const std::string& symbol, BookSnapshot& snapshot,
       "[SNAPSHOT_FETCH] "
       "duration={}ms "
       "status={}",
-
       fetchMs, response ? response->status : -1);
+
   if (!response || response->status != 200) {
     spdlog::error("Failed to fetch snapshot");
-
     return false;
   }
 
@@ -105,7 +111,6 @@ bool fetchSnapshot(const std::string& symbol, BookSnapshot& snapshot,
     return true;
   } catch (const std::exception& e) {
     spdlog::error("Snapshot parse error: {}", e.what());
-
     return false;
   }
 }
@@ -116,7 +121,6 @@ int main() {
   spdlog::info("Starting OrderBook Engine");
 
   std::signal(SIGINT, signalHandler);
-
   std::signal(SIGTERM, signalHandler);
 
   g_logger = std::make_unique<AsyncLogger>("logs/orderbook.log");
@@ -125,11 +129,29 @@ int main() {
 
   OrderBook book;
 
+  OrderManager orderManager;
+
+  ExecutionEngine executionEngine(book, orderManager);
+
+  ApiServer apiServer(executionEngine, orderManager);
+
   SnapshotManager snapshotManager("snapshots");
 
   SyncEngine syncEngine(book, [&](BookSnapshot& snapshot) {
     return fetchSnapshot("BTCUSDT", snapshot);
   });
+
+  WebSocketClient websocket;
+
+  websocket.connect("btcusdt", [&](const DepthDelta& delta) {
+    syncEngine.processDelta(delta);
+  });
+
+  spdlog::info("Connected to Binance");
+
+  spdlog::info("Buffering websocket events before snapshot fetch...");
+
+  std::this_thread::sleep_for(std::chrono::seconds(2));
 
   if (!syncEngine.initialize()) {
     spdlog::error("Failed to initialize SyncEngine");
@@ -145,13 +167,9 @@ int main() {
 
   snapshotManager.startPeriodicSaving(book, 30);
 
-  WebSocketClient websocket;
+  std::thread apiThread([&]() { apiServer.start(8080); });
 
-  websocket.connect("btcusdt", [&](const DepthDelta& delta) {
-    syncEngine.processDelta(delta);
-  });
-
-  spdlog::info("Connected to Binance");
+  spdlog::info("API thread started...");
 
   while (running) {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -164,6 +182,10 @@ int main() {
   snapshotManager.stopPeriodicSaving();
 
   g_logger->stop();
+
+  if (apiThread.joinable()) {
+    apiThread.detach();
+  }
 
   if (loggerThread.joinable()) {
     loggerThread.join();

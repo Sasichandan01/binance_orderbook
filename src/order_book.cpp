@@ -1,7 +1,5 @@
 #include "order_book.h"
-
 #include <spdlog/spdlog.h>
-
 #include <chrono>
 
 OrderBook::OrderBook() : lastUpdateId(0) {}

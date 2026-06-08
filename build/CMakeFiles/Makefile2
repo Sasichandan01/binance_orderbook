@@ -107,12 +107,12 @@ _deps/spdlog-build/clean: _deps/spdlog-build/CMakeFiles/spdlog.dir/clean
 CMakeFiles/orderbook.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target orderbook"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target orderbook"
 .PHONY : CMakeFiles/orderbook.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/orderbook.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/orderbook.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles 0
 .PHONY : CMakeFiles/orderbook.dir/rule
@@ -124,7 +124,7 @@ orderbook: CMakeFiles/orderbook.dir/rule
 # codegen rule for target.
 CMakeFiles/orderbook.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orderbook.dir/build.make CMakeFiles/orderbook.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Finished codegen for target orderbook"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Finished codegen for target orderbook"
 .PHONY : CMakeFiles/orderbook.dir/codegen
 
 # clean rule for target.
@@ -139,7 +139,7 @@ CMakeFiles/orderbook.dir/clean:
 _deps/spdlog-build/CMakeFiles/spdlog.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/spdlog-build/CMakeFiles/spdlog.dir/build.make _deps/spdlog-build/CMakeFiles/spdlog.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/spdlog-build/CMakeFiles/spdlog.dir/build.make _deps/spdlog-build/CMakeFiles/spdlog.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16 "Built target spdlog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19 "Built target spdlog"
 .PHONY : _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 
 # Build rule for subdir invocation for target.
@@ -156,7 +156,7 @@ spdlog: _deps/spdlog-build/CMakeFiles/spdlog.dir/rule
 # codegen rule for target.
 _deps/spdlog-build/CMakeFiles/spdlog.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/spdlog-build/CMakeFiles/spdlog.dir/build.make _deps/spdlog-build/CMakeFiles/spdlog.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16 "Finished codegen for target spdlog"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19 "Finished codegen for target spdlog"
 .PHONY : _deps/spdlog-build/CMakeFiles/spdlog.dir/codegen
 
 # clean rule for target.

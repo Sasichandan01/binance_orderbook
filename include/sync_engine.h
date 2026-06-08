@@ -41,6 +41,8 @@ class SyncEngine {
 
   bool synced_ = false;
 
+  bool initialized_ = false;
+
   uint64_t expectedNextId_ = 0;
 
   uint64_t lastAppliedU_ = 0;

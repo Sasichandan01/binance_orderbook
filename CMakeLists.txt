@@ -26,7 +26,10 @@ add_executable(orderbook
     src/websocket_client.cpp
     src/async_logger.cpp  
     src/sync_engine.cpp  
-    src/metrics_collector.cpp      
+    src/metrics_collector.cpp   
+    src/order_manager.cpp
+    src/execution_engine.cpp
+    src/api_server.cpp   
 )
 
 

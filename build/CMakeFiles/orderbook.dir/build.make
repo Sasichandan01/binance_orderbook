@@ -170,6 +170,48 @@ CMakeFiles/orderbook.dir/src/metrics_collector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orderbook.dir/src/metrics_collector.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cloudwick/Desktop/iiqf/orderbook_core/src/metrics_collector.cpp -o CMakeFiles/orderbook.dir/src/metrics_collector.cpp.s
 
+CMakeFiles/orderbook.dir/src/order_manager.cpp.o: CMakeFiles/orderbook.dir/flags.make
+CMakeFiles/orderbook.dir/src/order_manager.cpp.o: /Users/cloudwick/Desktop/iiqf/orderbook_core/src/order_manager.cpp
+CMakeFiles/orderbook.dir/src/order_manager.cpp.o: CMakeFiles/orderbook.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/orderbook.dir/src/order_manager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orderbook.dir/src/order_manager.cpp.o -MF CMakeFiles/orderbook.dir/src/order_manager.cpp.o.d -o CMakeFiles/orderbook.dir/src/order_manager.cpp.o -c /Users/cloudwick/Desktop/iiqf/orderbook_core/src/order_manager.cpp
+
+CMakeFiles/orderbook.dir/src/order_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/orderbook.dir/src/order_manager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cloudwick/Desktop/iiqf/orderbook_core/src/order_manager.cpp > CMakeFiles/orderbook.dir/src/order_manager.cpp.i
+
+CMakeFiles/orderbook.dir/src/order_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orderbook.dir/src/order_manager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cloudwick/Desktop/iiqf/orderbook_core/src/order_manager.cpp -o CMakeFiles/orderbook.dir/src/order_manager.cpp.s
+
+CMakeFiles/orderbook.dir/src/execution_engine.cpp.o: CMakeFiles/orderbook.dir/flags.make
+CMakeFiles/orderbook.dir/src/execution_engine.cpp.o: /Users/cloudwick/Desktop/iiqf/orderbook_core/src/execution_engine.cpp
+CMakeFiles/orderbook.dir/src/execution_engine.cpp.o: CMakeFiles/orderbook.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/orderbook.dir/src/execution_engine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orderbook.dir/src/execution_engine.cpp.o -MF CMakeFiles/orderbook.dir/src/execution_engine.cpp.o.d -o CMakeFiles/orderbook.dir/src/execution_engine.cpp.o -c /Users/cloudwick/Desktop/iiqf/orderbook_core/src/execution_engine.cpp
+
+CMakeFiles/orderbook.dir/src/execution_engine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/orderbook.dir/src/execution_engine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cloudwick/Desktop/iiqf/orderbook_core/src/execution_engine.cpp > CMakeFiles/orderbook.dir/src/execution_engine.cpp.i
+
+CMakeFiles/orderbook.dir/src/execution_engine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orderbook.dir/src/execution_engine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cloudwick/Desktop/iiqf/orderbook_core/src/execution_engine.cpp -o CMakeFiles/orderbook.dir/src/execution_engine.cpp.s
+
+CMakeFiles/orderbook.dir/src/api_server.cpp.o: CMakeFiles/orderbook.dir/flags.make
+CMakeFiles/orderbook.dir/src/api_server.cpp.o: /Users/cloudwick/Desktop/iiqf/orderbook_core/src/api_server.cpp
+CMakeFiles/orderbook.dir/src/api_server.cpp.o: CMakeFiles/orderbook.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/orderbook.dir/src/api_server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orderbook.dir/src/api_server.cpp.o -MF CMakeFiles/orderbook.dir/src/api_server.cpp.o.d -o CMakeFiles/orderbook.dir/src/api_server.cpp.o -c /Users/cloudwick/Desktop/iiqf/orderbook_core/src/api_server.cpp
+
+CMakeFiles/orderbook.dir/src/api_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/orderbook.dir/src/api_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cloudwick/Desktop/iiqf/orderbook_core/src/api_server.cpp > CMakeFiles/orderbook.dir/src/api_server.cpp.i
+
+CMakeFiles/orderbook.dir/src/api_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orderbook.dir/src/api_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cloudwick/Desktop/iiqf/orderbook_core/src/api_server.cpp -o CMakeFiles/orderbook.dir/src/api_server.cpp.s
+
 # Object files for target orderbook
 orderbook_OBJECTS = \
 "CMakeFiles/orderbook.dir/src/main.cpp.o" \
@@ -178,7 +220,10 @@ orderbook_OBJECTS = \
 "CMakeFiles/orderbook.dir/src/websocket_client.cpp.o" \
 "CMakeFiles/orderbook.dir/src/async_logger.cpp.o" \
 "CMakeFiles/orderbook.dir/src/sync_engine.cpp.o" \
-"CMakeFiles/orderbook.dir/src/metrics_collector.cpp.o"
+"CMakeFiles/orderbook.dir/src/metrics_collector.cpp.o" \
+"CMakeFiles/orderbook.dir/src/order_manager.cpp.o" \
+"CMakeFiles/orderbook.dir/src/execution_engine.cpp.o" \
+"CMakeFiles/orderbook.dir/src/api_server.cpp.o"
 
 # External object files for target orderbook
 orderbook_EXTERNAL_OBJECTS =
@@ -190,12 +235,15 @@ orderbook: CMakeFiles/orderbook.dir/src/websocket_client.cpp.o
 orderbook: CMakeFiles/orderbook.dir/src/async_logger.cpp.o
 orderbook: CMakeFiles/orderbook.dir/src/sync_engine.cpp.o
 orderbook: CMakeFiles/orderbook.dir/src/metrics_collector.cpp.o
+orderbook: CMakeFiles/orderbook.dir/src/order_manager.cpp.o
+orderbook: CMakeFiles/orderbook.dir/src/execution_engine.cpp.o
+orderbook: CMakeFiles/orderbook.dir/src/api_server.cpp.o
 orderbook: CMakeFiles/orderbook.dir/build.make
 orderbook: /opt/homebrew/Cellar/openssl@3/3.6.2/lib/libssl.dylib
 orderbook: /opt/homebrew/Cellar/openssl@3/3.6.2/lib/libcrypto.dylib
 orderbook: _deps/spdlog-build/libspdlog.a
 orderbook: CMakeFiles/orderbook.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable orderbook"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cloudwick/Desktop/iiqf/orderbook_core/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable orderbook"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/orderbook.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
