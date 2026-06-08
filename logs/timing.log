@@ -1,5 +1,0 @@
-ASYNC_LOGGER started
-RESTORE_SNAPSHOT success, lastUpdateId=94615751210, time_ms=2
-MAIN_LOOP started
-MAIN_LOOP ended, total_runtime_seconds=4
-SHUTDOWN complete, total_deltas=0, synced_deltas=0
