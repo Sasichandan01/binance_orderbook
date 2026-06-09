@@ -3,16 +3,13 @@
 uint64_t OrderManager::addOrder(const Order& order) {
   OpenOrder open;
 
-  uint64_t id = nextOrderId_++;
-
   open.order = order;
-  open.order.orderId = id;
 
   open.remainingQty = order.quantity - order.filledQty;
 
-  openOrders_[id] = open;
+  openOrders_[order.orderId] = open;
 
-  return id;
+  return order.orderId;
 }
 
 bool OrderManager::cancelOrder(uint64_t orderId) {
@@ -56,3 +53,7 @@ bool OrderManager::removeOrder(uint64_t orderId) {
 }
 
 uint64_t OrderManager::generateOrderId() { return nextOrderId_++; }
+
+std::unordered_map<uint64_t, OpenOrder>& OrderManager::getOpenOrders() {
+  return openOrders_;
+}

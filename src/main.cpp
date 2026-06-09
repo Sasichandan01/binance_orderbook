@@ -11,6 +11,7 @@
 #include "api_server.h"
 #include "async_logger.h"
 #include "execution_engine.h"
+#include "execution_logger.h"
 #include "order_book.h"
 #include "order_manager.h"
 #include "snapshot_manager.h"
@@ -116,7 +117,7 @@ bool fetchSnapshot(const std::string& symbol, BookSnapshot& snapshot,
 }
 
 int main() {
-  spdlog::set_level(spdlog::level::info);
+  spdlog::set_level(spdlog::level::debug);
 
   spdlog::info("Starting OrderBook Engine");
 
@@ -124,6 +125,8 @@ int main() {
   std::signal(SIGTERM, signalHandler);
 
   g_logger = std::make_unique<AsyncLogger>("logs/orderbook.log");
+
+  ExecutionLogger::initialize();
 
   std::thread loggerThread([&]() { g_logger->run(); });
 
@@ -145,6 +148,10 @@ int main() {
 
   websocket.connect("btcusdt", [&](const DepthDelta& delta) {
     syncEngine.processDelta(delta);
+
+    if (syncEngine.isSynced()) {
+      executionEngine.processOpenOrders();
+    }
   });
 
   spdlog::info("Connected to Binance");

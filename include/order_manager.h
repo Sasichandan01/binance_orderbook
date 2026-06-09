@@ -20,6 +20,8 @@ class OrderManager {
 
   uint64_t generateOrderId();
 
+  std::unordered_map<uint64_t, OpenOrder>& getOpenOrders();
+
  private:
   uint64_t nextOrderId_ = 1;
 

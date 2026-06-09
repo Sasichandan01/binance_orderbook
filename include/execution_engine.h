@@ -13,15 +13,20 @@ class ExecutionEngine {
 
   ExecutionReport placeOrder(Order order);
 
+  void processOpenOrders();
+
  private:
   OrderBook& book_;
+
   OrderManager& orderManager_;
 
   uint64_t nextTradeId_ = 1;
 
   ExecutionReport executeBuy(Order& order);
-
   ExecutionReport executeSell(Order& order);
+
+  ExecutionReport matchBuy(Order& order);
+  ExecutionReport matchSell(Order& order);
 };
 
 #endif

@@ -29,7 +29,8 @@ add_executable(orderbook
     src/metrics_collector.cpp   
     src/order_manager.cpp
     src/execution_engine.cpp
-    src/api_server.cpp   
+    src/api_server.cpp  
+    src/execution_logger.cpp 
 )
 
 
