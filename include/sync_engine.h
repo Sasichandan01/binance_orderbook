@@ -11,7 +11,7 @@
 
 class SyncEngine {
  public:
-  using SnapshotFetcher = std::function<bool(BookSnapshot&)>;
+  using SnapshotFetcher = std::function<bool(BookSnapshot&)>;  // typedef std::function<bool(BookSnapshot&)>SnapshotFetcher;
 
   SyncEngine(OrderBook& book, SnapshotFetcher fetcher);
 

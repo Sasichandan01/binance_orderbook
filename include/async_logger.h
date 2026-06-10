@@ -3,22 +3,31 @@
 
 #include <atomic>
 #include <fstream>
+#include <string>
 #include <vector>
 
 #include "types.h"
 
 class AsyncLogger {
  private:
+  enum class EntryType { RawDelta, Message };
+
   struct LogEntry {
-    uint64_t timestamp_ns;
+    EntryType type = EntryType::Message;
 
-    uint64_t update_id;
+    bool isOrderEvent = false;
 
-    bool isBid;
+    uint64_t timestampNs = 0;
 
-    int64_t price;
+    uint64_t updateId = 0;
 
-    int64_t quantity;
+    bool isBid = false;
+
+    int64_t price = 0;
+
+    int64_t quantity = 0;
+
+    std::string message;
   };
 
   static constexpr size_t QUEUE_SIZE = 100000;
@@ -26,6 +35,7 @@ class AsyncLogger {
   std::vector<LogEntry> queue_;
 
   std::atomic<size_t> head_{0};
+
   std::atomic<size_t> tail_{0};
 
   std::atomic<bool> running_{true};
@@ -34,12 +44,16 @@ class AsyncLogger {
 
   std::ofstream file_;
 
+  std::ofstream ordersFile_;
+
  public:
   explicit AsyncLogger(const std::string& filename);
 
   ~AsyncLogger();
 
   void logRawDelta(uint64_t timestampNs, const DepthDelta& delta);
+
+  void logMessage(const std::string& message);
 
   void run();
 
@@ -48,6 +62,10 @@ class AsyncLogger {
   bool isOpen() const { return file_.is_open(); }
 
   size_t droppedCount() const { return dropped_.load(); }
+
+  void logOrder(const std::string& message);
 };
+
+extern std::unique_ptr<AsyncLogger> g_logger;
 
 #endif

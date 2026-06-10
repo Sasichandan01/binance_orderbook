@@ -21,10 +21,9 @@
 
 using json = nlohmann::json;
 
+std::unique_ptr<AsyncLogger> g_logger;
 namespace {
 std::atomic<bool> running(true);
-
-std::unique_ptr<AsyncLogger> g_logger;
 }  // namespace
 
 void signalHandler(int signal) {
@@ -117,7 +116,7 @@ bool fetchSnapshot(const std::string& symbol, BookSnapshot& snapshot,
 }
 
 int main() {
-  spdlog::set_level(spdlog::level::debug);
+  spdlog::set_level(spdlog::level::info);
 
   spdlog::info("Starting OrderBook Engine");
 

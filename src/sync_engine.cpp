@@ -198,7 +198,7 @@ void SyncEngine::processDelta(const DepthDelta& delta) {
                      std::chrono::steady_clock::now() - eventStart)
                      .count();
 
-  spdlog::info(
+  spdlog::debug(
       "[LATENCY_BREAKDOWN] "
       "u={} "
       "exchange_to_app={}ms "

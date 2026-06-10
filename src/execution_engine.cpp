@@ -5,29 +5,37 @@
 #include <algorithm>
 #include <chrono>
 
+#include "async_logger.h"
+
+extern std::unique_ptr<AsyncLogger> g_logger;
 ExecutionEngine::ExecutionEngine(OrderBook& book, OrderManager& orderManager)
     : book_(book), orderManager_(orderManager) {}
 
 ExecutionReport ExecutionEngine::placeOrder(Order order) {
-  auto logger = ExecutionLogger::get();
-
-  logger->info(
+  spdlog::info(
       "[NEW_ORDER] "
-      "id={} "
+      "orderId={} "
       "side={} "
-      "qty={} "
+      "type={} "
       "price={} "
-      "type={}",
+      "qty={}",
 
-      order.orderId,
+      order.orderId, order.side == Side::Buy ? "BUY" : "SELL",
+      order.type == OrderType::Market ? "MARKET" : "LIMIT",
+      static_cast<double>(order.price) / PRICE_SCALE,
+      static_cast<double>(order.quantity) / PRICE_SCALE);
 
-      order.side == Side::Buy ? "BUY" : "SELL",
+  if (g_logger) {
+    g_logger->logOrder(
+        "[NEW_ORDER] orderId=" + std::to_string(order.orderId) + " side=" +
+        std::string(order.side == Side::Buy ? "BUY" : "SELL") + " type=" +
+        std::string(order.type == OrderType::Market ? "MARKET" : "LIMIT") +
+        " price=" +
+        std::to_string(static_cast<double>(order.price) / PRICE_SCALE) +
+        " qty=" +
+        std::to_string(static_cast<double>(order.quantity) / PRICE_SCALE));
+  }
 
-      order.quantity,
-
-      order.price,
-
-      order.type == OrderType::Market ? "MARKET" : "LIMIT");
   if (order.side == Side::Buy) {
     return executeBuy(order);
   }
@@ -45,7 +53,7 @@ ExecutionReport ExecutionEngine::matchBuy(Order& order) {
 
   auto asks = book_.getAsks(10000);
 
-  int64_t totalCost = 0;
+  __int128 totalCost = 0;
 
   for (const auto& level : asks) {
     if (remaining <= 0) {
@@ -60,7 +68,8 @@ ExecutionReport ExecutionEngine::matchBuy(Order& order) {
 
     remaining -= fillQty;
 
-    totalCost += fillQty * level.price;
+    totalCost +=
+        static_cast<__int128>(fillQty) * static_cast<__int128>(level.price);
 
     Trade trade;
 
@@ -74,23 +83,35 @@ ExecutionReport ExecutionEngine::matchBuy(Order& order) {
                           .count();
 
     report.trades.push_back(trade);
-    auto logger = ExecutionLogger::get();
 
-    logger->info(
+    spdlog::info(
         "[TRADE] "
         "orderId={} "
-        "Side=BUY"
+        "tradeId={} "
+        "side=BUY "
         "price={} "
         "qty={}",
 
-        trade.orderId, trade.price, trade.quantity);
+        trade.orderId, trade.tradeId,
+        static_cast<double>(trade.price) / PRICE_SCALE,
+        static_cast<double>(trade.quantity) / PRICE_SCALE);
+
+    if (g_logger) {
+      g_logger->logOrder(
+          "[TRADE] orderId=" + std::to_string(trade.orderId) +
+          " tradeId=" + std::to_string(trade.tradeId) + " side=BUY price=" +
+          std::to_string(static_cast<double>(trade.price) / PRICE_SCALE) +
+          " qty=" +
+          std::to_string(static_cast<double>(trade.quantity) / PRICE_SCALE));
+    }
   }
 
   report.filledQty = order.quantity - remaining;
   report.remainingQty = remaining;
 
   if (report.filledQty > 0) {
-    report.averagePrice = static_cast<double>(totalCost) / report.filledQty;
+    report.averagePrice =
+        static_cast<double>(totalCost / report.filledQty) / PRICE_SCALE;
   }
 
   if (remaining == 0) {
@@ -114,7 +135,7 @@ ExecutionReport ExecutionEngine::matchSell(Order& order) {
 
   auto bids = book_.getBids(10000);
 
-  int64_t totalValue = 0;
+  __int128 totalValue = 0;
 
   for (const auto& level : bids) {
     if (remaining <= 0) {
@@ -129,7 +150,8 @@ ExecutionReport ExecutionEngine::matchSell(Order& order) {
 
     remaining -= fillQty;
 
-    totalValue += fillQty * level.price;
+    totalValue +=
+        static_cast<__int128>(fillQty) * static_cast<__int128>(level.price);
 
     Trade trade;
 
@@ -143,23 +165,35 @@ ExecutionReport ExecutionEngine::matchSell(Order& order) {
                           .count();
 
     report.trades.push_back(trade);
-    auto logger = ExecutionLogger::get();
 
-    logger->info(
+    spdlog::info(
         "[TRADE] "
         "orderId={} "
-        "Side=SELL"
+        "tradeId={} "
+        "side=SELL "
         "price={} "
         "qty={}",
 
-        trade.orderId, trade.price, trade.quantity);
+        trade.orderId, trade.tradeId,
+        static_cast<double>(trade.price) / PRICE_SCALE,
+        static_cast<double>(trade.quantity) / PRICE_SCALE);
+
+    if (g_logger) {
+      g_logger->logOrder(
+          "[TRADE] orderId=" + std::to_string(trade.orderId) +
+          " tradeId=" + std::to_string(trade.tradeId) + " side=SELL price=" +
+          std::to_string(static_cast<double>(trade.price) / PRICE_SCALE) +
+          " qty=" +
+          std::to_string(static_cast<double>(trade.quantity) / PRICE_SCALE));
+    }
   }
 
   report.filledQty = order.quantity - remaining;
   report.remainingQty = remaining;
 
   if (report.filledQty > 0) {
-    report.averagePrice = static_cast<double>(totalValue) / report.filledQty;
+    report.averagePrice =
+        static_cast<double>(totalValue / report.filledQty) / PRICE_SCALE;
   }
 
   if (remaining == 0) {
@@ -185,6 +219,12 @@ ExecutionReport ExecutionEngine::executeBuy(Order& order) {
 
   orderManager_.addOrder(order);
 
+  if (g_logger) {
+    g_logger->logOrder(
+        "[OPEN_ORDER] orderId=" + std::to_string(order.orderId) +
+        " remaining=" +
+        std::to_string(static_cast<double>(report.remainingQty) / PRICE_SCALE));
+  }
   return report;
 }
 
@@ -199,6 +239,13 @@ ExecutionReport ExecutionEngine::executeSell(Order& order) {
   order.status = report.status;
 
   orderManager_.addOrder(order);
+
+  if (g_logger) {
+    g_logger->logOrder(
+        "[OPEN_ORDER] orderId=" + std::to_string(order.orderId) +
+        " remaining=" +
+        std::to_string(static_cast<double>(report.remainingQty) / PRICE_SCALE));
+  }
 
   return report;
 }
@@ -229,7 +276,7 @@ void ExecutionEngine::processOpenOrders() {
 
     open.remainingQty -= report.filledQty;
 
-    ExecutionLogger::get()->info(
+    spdlog::info(
         "[OPEN_ORDER_FILL] "
         "orderId={} "
         "filled={} "
@@ -237,17 +284,34 @@ void ExecutionEngine::processOpenOrders() {
 
         orderId, report.filledQty, open.remainingQty);
 
+    if (g_logger) {
+      g_logger->logOrder(
+          "[OPEN_ORDER_FILL] orderId=" + std::to_string(orderId) + " filled=" +
+          std::to_string(static_cast<double>(report.filledQty) / PRICE_SCALE) +
+          " remaining=" +
+          std::to_string(static_cast<double>(open.remainingQty) / PRICE_SCALE));
+    }
+
     if (open.remainingQty <= 0) {
       open.order.status = OrderStatus::Filled;
 
       completedOrders.push_back(orderId);
 
-      ExecutionLogger::get()->info(
+      spdlog::info(
           "[ORDER_COMPLETED] "
           "orderId={} "
           "totalFilled={}",
 
           orderId, open.order.filledQty);
+
+      if (g_logger) {
+        g_logger->logOrder(
+            "[ORDER_COMPLETED] orderId=" + std::to_string(orderId) +
+            " totalFilled=" +
+            std::to_string(static_cast<double>(open.order.filledQty) /
+                           PRICE_SCALE));
+      }
+      
     } else {
       open.order.status = OrderStatus::PartiallyFilled;
     }

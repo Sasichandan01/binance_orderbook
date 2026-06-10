@@ -1,10 +1,17 @@
 #include "async_logger.h"
 #include <spdlog/spdlog.h>
 #include <chrono>
+#include <memory>
 #include <thread>
 
 AsyncLogger::AsyncLogger(const std::string& filename) : queue_(QUEUE_SIZE) {
   file_.open(filename, std::ios::out | std::ios::trunc);
+
+  ordersFile_.open("logs/orders.log", std::ios::out | std::ios::trunc);
+
+  if (!ordersFile_) {
+    spdlog::warn("Could not open orders.log");
+  }
 
   if (!file_) {
     spdlog::warn("Could not open log file '{}'", filename);
@@ -25,6 +32,26 @@ AsyncLogger::AsyncLogger(const std::string& filename) : queue_(QUEUE_SIZE) {
 
 AsyncLogger::~AsyncLogger() { stop(); }
 
+void AsyncLogger::logMessage(const std::string& message) {
+  size_t head = head_.load(std::memory_order_relaxed);
+
+  size_t nextHead = (head + 1) % QUEUE_SIZE;
+
+  if (nextHead == tail_.load(std::memory_order_acquire)) {
+    dropped_.fetch_add(1, std::memory_order_relaxed);
+
+    return;
+  }
+
+  auto& entry = queue_[head];
+
+  entry.type = EntryType::Message;
+
+  entry.message = message;
+
+  head_.store(nextHead, std::memory_order_release);
+}
+
 void AsyncLogger::logRawDelta(uint64_t timestampNs, const DepthDelta& delta) {
   if (!file_.is_open()) {
     return;
@@ -43,9 +70,13 @@ void AsyncLogger::logRawDelta(uint64_t timestampNs, const DepthDelta& delta) {
 
     auto& entry = queue_[head];
 
-    entry.timestamp_ns = timestampNs;
+    entry.type = EntryType::RawDelta;
 
-    entry.update_id = delta.finalUpdateId;
+    entry.isOrderEvent = false;
+
+    entry.timestampNs = timestampNs;
+
+    entry.updateId = delta.finalUpdateId;
 
     entry.isBid = isBid;
 
@@ -76,9 +107,17 @@ void AsyncLogger::run() {
     while (tail != head) {
       const auto& entry = queue_[tail];
 
-      file_ << entry.timestamp_ns << "," << entry.update_id << ","
-            << (entry.isBid ? "bid" : "ask") << "," << entry.price << ","
-            << entry.quantity << "\n";
+      if (entry.type == EntryType::RawDelta) {
+        file_ << entry.timestampNs << "," << entry.updateId << ","
+              << (entry.isBid ? "bid" : "ask") << "," << entry.price << ","
+              << entry.quantity << "\n";
+      } else {
+        if (entry.isOrderEvent) {
+          ordersFile_ << entry.message << "\n";
+        } else {
+          file_ << entry.message << "\n";
+        }
+      }
 
       tail = (tail + 1) % QUEUE_SIZE;
     }
@@ -89,12 +128,14 @@ void AsyncLogger::run() {
 
     if (++flushCounter % 100 == 0) {
       file_.flush();
+
+      if (ordersFile_.is_open()) {
+        ordersFile_.flush();
+      }
     }
 
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
   }
-
-  // Final drain
 
   size_t tail = tail_.load(std::memory_order_relaxed);
 
@@ -103,9 +144,17 @@ void AsyncLogger::run() {
   while (tail != head) {
     const auto& entry = queue_[tail];
 
-    file_ << entry.timestamp_ns << "," << entry.update_id << ","
-          << (entry.isBid ? "bid" : "ask") << "," << entry.price << ","
-          << entry.quantity << "\n";
+    if (entry.type == EntryType::RawDelta) {
+      file_ << entry.timestampNs << "," << entry.updateId << ","
+            << (entry.isBid ? "bid" : "ask") << "," << entry.price << ","
+            << entry.quantity << "\n";
+    } else {
+      if (entry.isOrderEvent) {
+        ordersFile_ << entry.message << "\n";
+      } else {
+        file_ << entry.message << "\n";
+      }
+    }
 
     tail = (tail + 1) % QUEUE_SIZE;
   }
@@ -114,6 +163,12 @@ void AsyncLogger::run() {
 
   if (file_.is_open()) {
     file_.flush();
+
+    if (ordersFile_.is_open()) {
+      ordersFile_.flush();
+      ordersFile_.close();
+    }
+
     file_.close();
   }
 
@@ -121,3 +176,24 @@ void AsyncLogger::run() {
 }
 
 void AsyncLogger::stop() { running_ = false; }
+
+void AsyncLogger::logOrder(const std::string& message) {
+  size_t head = head_.load(std::memory_order_relaxed);
+
+  size_t nextHead = (head + 1) % QUEUE_SIZE;
+
+  if (nextHead == tail_.load(std::memory_order_acquire)) {
+    dropped_.fetch_add(1, std::memory_order_relaxed);
+    return;
+  }
+
+  auto& entry = queue_[head];
+  
+  entry.type = EntryType::Message;
+
+  entry.isOrderEvent = true;
+
+  entry.message = message;
+
+  head_.store(nextHead, std::memory_order_release);
+}
